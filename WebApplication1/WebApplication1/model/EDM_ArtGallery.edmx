@@ -1,0 +1,592 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ArtGalleryV2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Art">
+          <Key>
+            <PropertyRef Name="art_id" />
+          </Key>
+          <Property Name="art_id" Type="int" Nullable="false" />
+          <Property Name="artist_id" Type="int" Nullable="false" />
+          <Property Name="image" Type="image" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="price" Type="money" />
+          <Property Name="date_done" Type="date" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="description" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="BankTranfer">
+          <Key>
+            <PropertyRef Name="bank_account" />
+          </Key>
+          <Property Name="bank_account" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="20" />
+          <Property Name="bank_username" Type="nvarchar" MaxLength="20" />
+          <Property Name="amount" Type="money" />
+          <Property Name="password" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="BitArt">
+          <Key>
+            <PropertyRef Name="bit_art_id" />
+          </Key>
+          <Property Name="bit_art_id" Type="int" Nullable="false" />
+          <Property Name="art_id" Type="int" Nullable="false" />
+          <Property Name="customer_id" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="price" Type="nvarchar" MaxLength="300" />
+          <Property Name="payment_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Card">
+          <Key>
+            <PropertyRef Name="card_number" />
+          </Key>
+          <Property Name="card_number" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="20" />
+          <Property Name="ccv" Type="nvarchar" MaxLength="3" />
+          <Property Name="exp_date" Type="date" />
+          <Property Name="amount" Type="money" />
+          <Property Name="password" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="cart_id" />
+          </Key>
+          <Property Name="cart_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="relation" Type="nchar" MaxLength="1" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="art_id" Type="int" Nullable="false" />
+          <Property Name="comment" Type="nvarchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="ChangePassword">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="temp_password" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="int" Nullable="false" />
+          <Property Name="customer_id" Type="int" Nullable="false" />
+          <Property Name="order_date" Type="date" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="order_id" />
+            <PropertyRef Name="art_id" />
+          </Key>
+          <Property Name="order_id" Type="int" Nullable="false" />
+          <Property Name="art_id" Type="int" Nullable="false" />
+          <Property Name="product_quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="payment_id" />
+          </Key>
+          <Property Name="payment_id" Type="int" Nullable="false" />
+          <Property Name="order_id" Type="int" Nullable="false" />
+          <Property Name="payment_method_id" Type="int" Nullable="false" />
+          <Property Name="total_price" Type="money" />
+          <Property Name="payment_date" Type="date" />
+          <Property Name="status" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentMethod">
+          <Key>
+            <PropertyRef Name="payment_method_id" />
+          </Key>
+          <Property Name="payment_method_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="payment_role_id" Type="int" Nullable="false" />
+          <Property Name="payment_role" Type="nvarchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="PayPal">
+          <Key>
+            <PropertyRef Name="paypal_id" />
+          </Key>
+          <Property Name="paypal_id" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="30" />
+          <Property Name="name" Type="nvarchar" MaxLength="20" />
+          <Property Name="amount" Type="money" />
+          <Property Name="password" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="PM_BankTranfer">
+          <Key>
+            <PropertyRef Name="payment_role_id" />
+          </Key>
+          <Property Name="payment_role_id" Type="int" Nullable="false" />
+          <Property Name="bank_account" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="PM_Card">
+          <Key>
+            <PropertyRef Name="payment_role_id" />
+          </Key>
+          <Property Name="payment_role_id" Type="int" Nullable="false" />
+          <Property Name="card_number" Type="nvarchar" MaxLength="16" />
+        </EntityType>
+        <EntityType Name="PM_PayPal">
+          <Key>
+            <PropertyRef Name="payment_role_id" />
+          </Key>
+          <Property Name="payment_role_id" Type="int" Nullable="false" />
+          <Property Name="paypal_id" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="ProductRelation">
+          <Key>
+            <PropertyRef Name="relation_id" />
+          </Key>
+          <Property Name="relation_id" Type="int" Nullable="false" />
+          <Property Name="customer_id" Type="int" Nullable="false" />
+          <Property Name="relation" Type="bit" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="art_id" Type="int" Nullable="false" />
+          <Property Name="comment" Type="nvarchar" MaxLength="4000" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="user_email" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="20" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="20" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="20" />
+          <Property Name="user_role" Type="nvarchar" MaxLength="1" />
+          <Property Name="phone_num" Type="nvarchar" MaxLength="11" />
+          <Property Name="gender" Type="nvarchar" MaxLength="1" />
+          <Property Name="picture" Type="image" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ArtGalleryV2StoreContainer">
+          <EntitySet Name="Art" EntityType="Self.Art" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BankTranfer" EntityType="Self.BankTranfer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BitArt" EntityType="Self.BitArt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Card" EntityType="Self.Card" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChangePassword" EntityType="Self.ChangePassword" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentMethod" EntityType="Self.PaymentMethod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PayPal" EntityType="Self.PayPal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PM_BankTranfer" EntityType="Self.PM_BankTranfer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PM_Card" EntityType="Self.PM_Card" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PM_PayPal" EntityType="Self.PM_PayPal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductRelation" EntityType="Self.ProductRelation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ArtGalleryV2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ArtGalleryV2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Arts" EntityType="ArtGalleryV2.Art" />
+          <EntitySet Name="BankTranfers" EntityType="ArtGalleryV2.BankTranfer" />
+          <EntitySet Name="BitArts" EntityType="ArtGalleryV2.BitArt" />
+          <EntitySet Name="Cards" EntityType="ArtGalleryV2.Card" />
+          <EntitySet Name="Carts" EntityType="ArtGalleryV2.Cart" />
+          <EntitySet Name="Orders" EntityType="ArtGalleryV2.Order" />
+          <EntitySet Name="Payments" EntityType="ArtGalleryV2.Payment" />
+          <EntitySet Name="PaymentMethods" EntityType="ArtGalleryV2.PaymentMethod" />
+          <EntitySet Name="PayPals" EntityType="ArtGalleryV2.PayPal" />
+          <EntitySet Name="PM_BankTranfer" EntityType="ArtGalleryV2.PM_BankTranfer" />
+          <EntitySet Name="PM_Card" EntityType="ArtGalleryV2.PM_Card" />
+          <EntitySet Name="ProductRelations" EntityType="ArtGalleryV2.ProductRelation" />
+          <EntitySet Name="Users" EntityType="ArtGalleryV2.User" />
+          <EntitySet Name="OrderDetails" EntityType="ArtGalleryV2.OrderDetail" />
+          <EntitySet Name="PM_PayPal" EntityType="ArtGalleryV2.PM_PayPal" />
+          <EntitySet Name="ChangePasswords" EntityType="ArtGalleryV2.ChangePassword" />
+        </EntityContainer>
+        <EnumType Name="PaymentRole" UnderlyingType="Int16">
+          <Member Name="Card" Value="67" />
+          <Member Name="Bank" Value="66" />
+          <Member Name="PayPal" Value="80" />
+        </EnumType>
+        <EnumType Name="Gender" UnderlyingType="Int16">
+          <Member Name="Male" Value="77" />
+          <Member Name="Female" Value="70" />
+          <Member Name="Unknow" Value="85" />
+        </EnumType>
+        <EnumType Name="UserRole" UnderlyingType="Int16">
+          <Member Name="Artist" Value="65" />
+          <Member Name="Customer" Value="67" />
+          <Member Name="Both" Value="66" />
+        </EnumType>
+        <EnumType Name="Relation" UnderlyingType="Int16">
+          <Member Name="Gallery" Value="71" />
+          <Member Name="WishList" Value="87" />
+          <Member Name="Cart" Value="67" />
+        </EnumType>
+        <EntityType Name="Art">
+          <Key>
+            <PropertyRef Name="art_id" />
+          </Key>
+          <Property Name="art_id" Type="Int32" Nullable="false" />
+          <Property Name="artist_id" Type="Int32" Nullable="false" />
+          <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="date_done" Type="DateTime" Precision="0" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BankTranfer">
+          <Key>
+            <PropertyRef Name="bank_account" />
+          </Key>
+          <Property Name="bank_account" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="bank_username" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BitArt">
+          <Key>
+            <PropertyRef Name="bit_art_id" />
+          </Key>
+          <Property Name="bit_art_id" Type="Int32" Nullable="false" />
+          <Property Name="art_id" Type="Int32" Nullable="false" />
+          <Property Name="customer_id" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="price" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="payment_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Card">
+          <Key>
+            <PropertyRef Name="card_number" />
+          </Key>
+          <Property Name="card_number" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ccv" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="exp_date" Type="DateTime" Precision="0" />
+          <Property Name="amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="cart_id" />
+          </Key>
+          <Property Name="cart_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="relation" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="art_id" Type="Int32" Nullable="false" />
+          <Property Name="comment" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="Int32" Nullable="false" />
+          <Property Name="customer_id" Type="Int32" Nullable="false" />
+          <Property Name="order_date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="payment_id" />
+          </Key>
+          <Property Name="payment_id" Type="Int32" Nullable="false" />
+          <Property Name="order_id" Type="Int32" Nullable="false" />
+          <Property Name="payment_method_id" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="total_price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="payment_date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="PaymentMethod">
+          <Key>
+            <PropertyRef Name="payment_method_id" />
+          </Key>
+          <Property Name="payment_method_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="payment_role_id" Type="Int32" Nullable="false" />
+          <Property Name="payment_role" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PayPal">
+          <Key>
+            <PropertyRef Name="paypal_id" />
+          </Key>
+          <Property Name="paypal_id" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PM_BankTranfer">
+          <Key>
+            <PropertyRef Name="payment_role_id" />
+          </Key>
+          <Property Name="payment_role_id" Type="Int32" Nullable="false" />
+          <Property Name="bank_account" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PM_Card">
+          <Key>
+            <PropertyRef Name="payment_role_id" />
+          </Key>
+          <Property Name="payment_role_id" Type="Int32" Nullable="false" />
+          <Property Name="card_number" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProductRelation">
+          <Key>
+            <PropertyRef Name="relation_id" />
+          </Key>
+          <Property Name="relation_id" Type="Int32" Nullable="false" />
+          <Property Name="customer_id" Type="Int32" Nullable="false" />
+          <Property Name="relation" Type="Boolean" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="art_id" Type="Int32" Nullable="false" />
+          <Property Name="comment" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="user_email" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="last_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="first_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="user_role" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="phone_num" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="order_id" />
+            <PropertyRef Name="art_id" />
+          </Key>
+          <Property Name="order_id" Type="Int32" Nullable="false" />
+          <Property Name="art_id" Type="Int32" Nullable="false" />
+          <Property Name="product_quantity" Type="Int32" />
+        </EntityType>
+        <EntityType Name="PM_PayPal">
+          <Key>
+            <PropertyRef Name="payment_role_id" />
+          </Key>
+          <Property Name="payment_role_id" Type="Int32" Nullable="false" />
+          <Property Name="paypal_id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ChangePassword">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="temp_password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EnumType Name="PaymentStatus">
+          <Member Name="NotPaid" Value="78" />
+          <Member Name="Paid" Value="80" />
+          <Member Name="Cancled" Value="67" />
+          <Member Name="Refund" Value="82" />
+        </EnumType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ArtGalleryV2StoreContainer" CdmEntityContainer="ArtGalleryV2Entities">
+          <EntitySetMapping Name="Arts">
+            <EntityTypeMapping TypeName="ArtGalleryV2.Art">
+              <MappingFragment StoreEntitySet="Art">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="date_done" ColumnName="date_done" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="artist_id" ColumnName="artist_id" />
+                <ScalarProperty Name="art_id" ColumnName="art_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BankTranfers">
+            <EntityTypeMapping TypeName="ArtGalleryV2.BankTranfer">
+              <MappingFragment StoreEntitySet="BankTranfer">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="bank_username" ColumnName="bank_username" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="bank_account" ColumnName="bank_account" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BitArts">
+            <EntityTypeMapping TypeName="ArtGalleryV2.BitArt">
+              <MappingFragment StoreEntitySet="BitArt">
+                <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="art_id" ColumnName="art_id" />
+                <ScalarProperty Name="bit_art_id" ColumnName="bit_art_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cards">
+            <EntityTypeMapping TypeName="ArtGalleryV2.Card">
+              <MappingFragment StoreEntitySet="Card">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="exp_date" ColumnName="exp_date" />
+                <ScalarProperty Name="ccv" ColumnName="ccv" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="card_number" ColumnName="card_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Carts">
+            <EntityTypeMapping TypeName="ArtGalleryV2.Cart">
+              <MappingFragment StoreEntitySet="Cart">
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="art_id" ColumnName="art_id" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="relation" ColumnName="relation" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="cart_id" ColumnName="cart_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="ArtGalleryV2.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="order_date" ColumnName="order_date" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="ArtGalleryV2.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="payment_date" ColumnName="payment_date" />
+                <ScalarProperty Name="total_price" ColumnName="total_price" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="payment_method_id" ColumnName="payment_method_id" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentMethods">
+            <EntityTypeMapping TypeName="ArtGalleryV2.PaymentMethod">
+              <MappingFragment StoreEntitySet="PaymentMethod">
+                <ScalarProperty Name="payment_role" ColumnName="payment_role" />
+                <ScalarProperty Name="payment_role_id" ColumnName="payment_role_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="payment_method_id" ColumnName="payment_method_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PayPals">
+            <EntityTypeMapping TypeName="ArtGalleryV2.PayPal">
+              <MappingFragment StoreEntitySet="PayPal">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="paypal_id" ColumnName="paypal_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PM_BankTranfer">
+            <EntityTypeMapping TypeName="ArtGalleryV2.PM_BankTranfer">
+              <MappingFragment StoreEntitySet="PM_BankTranfer">
+                <ScalarProperty Name="bank_account" ColumnName="bank_account" />
+                <ScalarProperty Name="payment_role_id" ColumnName="payment_role_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PM_Card">
+            <EntityTypeMapping TypeName="ArtGalleryV2.PM_Card">
+              <MappingFragment StoreEntitySet="PM_Card">
+                <ScalarProperty Name="card_number" ColumnName="card_number" />
+                <ScalarProperty Name="payment_role_id" ColumnName="payment_role_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductRelations">
+            <EntityTypeMapping TypeName="ArtGalleryV2.ProductRelation">
+              <MappingFragment StoreEntitySet="ProductRelation">
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="art_id" ColumnName="art_id" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="relation" ColumnName="relation" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="relation_id" ColumnName="relation_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ArtGalleryV2.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="picture" ColumnName="picture" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="phone_num" ColumnName="phone_num" />
+                <ScalarProperty Name="user_role" ColumnName="user_role" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="user_email" ColumnName="user_email" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="ArtGalleryV2.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="product_quantity" ColumnName="product_quantity" />
+                <ScalarProperty Name="art_id" ColumnName="art_id" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PM_PayPal">
+            <EntityTypeMapping TypeName="ArtGalleryV2.PM_PayPal">
+              <MappingFragment StoreEntitySet="PM_PayPal">
+                <ScalarProperty Name="paypal_id" ColumnName="paypal_id" />
+                <ScalarProperty Name="payment_role_id" ColumnName="payment_role_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChangePasswords">
+            <EntityTypeMapping TypeName="ArtGalleryV2.ChangePassword">
+              <MappingFragment StoreEntitySet="ChangePassword">
+                <ScalarProperty Name="temp_password" ColumnName="temp_password" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ArtGalleryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ArtGalleryEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Arts" EntityType="ArtGalleryModel.Art" />
+    <EntitySet Name="BitArts" EntityType="ArtGalleryModel.BitArt" />
+    <EntitySet Name="Tables" EntityType="ArtGalleryModel.Table" />
+  </EntityContainer>
+  <EntityType Name="Art">
+    <Key>
+      <PropertyRef Name="art_id" />
+    </Key>
+    <Property Name="art_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="artist_id" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="10" Scale="4" />
+    <Property Name="date_done" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="BitArt">
+    <Key>
+      <PropertyRef Name="bit_art_id" />
+    </Key>
+    <Property Name="bit_art_id" Type="Int32" Nullable="false" />
+    <Property Name="art_id" Type="Int32" Nullable="false" />
+    <Property Name="customer_id" Type="Int32" Nullable="false" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="price" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+    <Property Name="date_done_bit" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="Table">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="x" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="xx" Type="Boolean" />
+    <Property Name="xxx" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="wxxx" Type="Double" />
+  </EntityType>
+</Schema>

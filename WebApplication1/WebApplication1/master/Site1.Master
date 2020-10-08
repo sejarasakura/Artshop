@@ -1,0 +1,197 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="WebApplication1.master.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Artwork Sales.com</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <!--CSS-->
+    <link href="../lib/Master.css" rel="stylesheet" />
+
+    <!-- import css lib-->
+    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../lib/datatable/datatables.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- import javascript lib-->
+    <script src="../lib/jquery/jquery-3.5.1.min.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../lib/datatable/datatables.min.js"></script>
+
+</head>
+<body>
+
+    <!--================================== Header =====================================-->
+    <nav class="navbar navbar-default" style="padding-top: 10px; padding-bottom: 10px;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="" href="<%= "https://"+HttpContext.Current.Request.Url.Authority%>">
+                    <img class="pull-left" src="../media/logo.png" alt="Flowers in Chania" width="64" height="50">
+                </a>
+                <a class="navbar-brand" href="<%= "https://"+HttpContext.Current.Request.Url.Authority%>" style="padding-left: 30px">Artwork Sales.com
+                </a>
+            </div>
+            <ul class="nav navbar-nav">
+                <%user = GetLogin(Response);%>
+
+                <!--All user-->
+                <li class="art-list"><a href="<%= "https://"+HttpContext.Current.Request.Url.Authority%>/pages/Home.aspx">Home</a></li>
+
+                <%
+                    if (user != null)
+                    {
+                        if (!user.user_role.Equals("A"))
+                        {
+                %>
+
+                <li class="art-list"><a href="<%= "https://" + HttpContext.Current.Request.Url.Authority%>/pages/Shop.aspx">Shop</a></li>
+
+                <%
+                    }
+                %>
+                <!--autorise user-->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">My Account<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li class=""><a href="<%= "https://"+HttpContext.Current.Request.Url.Authority%>/pages/MyAccount.aspx">My Account details</a></li>
+                        <li class=""><a href="<%= "https://"+HttpContext.Current.Request.Url.Authority%>/pages/ChangePassword.aspx?post=0">Change Password</a></li>
+                        <li class=""><a href="#" runat="server" onserverclick="logout">Logout</a></li>
+                    </ul>
+                </li>
+                <%
+                    if (user.user_role.Equals("C") || user.user_role.Equals("B"))
+                    {
+                %>
+                <!-- Customer -->
+                <li class="art-list"><a href="<%= "https://"+HttpContext.Current.Request.Url.Authority%>/pages/MyGallery.aspx">My Gallery</a></li>
+                <li class="art-list"><a href="<%= "https://"+HttpContext.Current.Request.Url.Authority%>/pages/MyCart.aspx">My Cart</a></li>
+                <li class="art-list"><a href="<%= "https://"+HttpContext.Current.Request.Url.Authority%>/pages/MyOrder.aspx">My Order</a></li>
+                <li class="art-list"><a href="<%= "https://"+HttpContext.Current.Request.Url.Authority%>/pages/MyWishList.aspx">My Wish List</a></li>
+                <%
+                    }
+                    else if (user.user_role.Equals("A") || user.user_role.Equals("B"))
+                    {
+                %>
+                <!-- Artiest -->
+                <li class="art-list"><a href="<%= "https://"+HttpContext.Current.Request.Url.Authority%>/pages/AddArt.aspx">Add New Art</a></li>
+                <li class="art-list"><a href="<%= "https://"+HttpContext.Current.Request.Url.Authority%>/pages/ArtWorkSales.aspx">My Artwork</a></li>
+                <li class="art-list"><a href="<%= "https://"+HttpContext.Current.Request.Url.Authority%>/pages/MyGallery.aspx">My Gallery</a></li>
+                <%
+                        }
+                    }
+                    else
+                    {
+                %>
+                <!--unautorise user-->
+                <li class="art-list"><a href="<%= "https://" + HttpContext.Current.Request.Url.Authority%>/pages/Shop.aspx">Shop</a></li>
+                <li class="art-list"><a href="<%= "https://"+HttpContext.Current.Request.Url.Authority%>/pages/Register.aspx">Register</a></li>
+                <li class="art-list"><a href="<%= "https://"+HttpContext.Current.Request.Url.Authority%>/pages/Login.aspx">Login</a></li>
+                <%
+                    }
+                %>
+            </ul>
+
+            <div class="navbar-header pull-right">
+                <a class="" href="<%= getMyAccount() %>"">
+                    <img src="<%= "https://"+HttpContext.Current.Request.Url.Authority+"/Class/ProfilePicture.ashx?id=" + (user == null ? -1 :user.user_id) %>" alt="<%= (user == null ? -1+ "" :user.user_id + user.first_name + user.last_name) %>"
+                        width="50"
+                        height="50"
+                        class="img-circle">
+                </a>
+            </div>
+        </div>
+    </nav>
+    <!--================================== Header End =====================================-->
+
+    <form id="form1" runat="server">
+        <?xml version="1.0" encoding="utf-8" ?>
+        <div>
+
+            <!--================================== Content =====================================-->
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+
+    <!--================================== Fotter =====================================-->
+    <footer style="padding-top: 40px; padding-bottom: 40px; margin-top: 50px; background-color: #555">
+
+        <div class="container" style="color: #fff">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h3>About Us</h3>
+                    <p>Out Support Team</p>
+                    <p>Careers</p>
+                    <p>Contact US</p>
+                    <p>ArtWork Story</p>
+                </div>
+                <div class="col-sm-3">
+                    <h3>For Buyers</h3>
+                    <p>Art Advertising service</p>
+                    <p>Buyer F and Q</p>
+                    <p>Return Policy</p>
+                    <p>Art Paint</p>
+                    <p>Gift Card</p>
+                    <p>Catalog</p>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3 class="pull-right">©</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p class="pull-right">2020 ArtWork Sale</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p class="pull-right">Leaf Group Commerce</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p class="pull-right">All Right Reserved</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <a href="#" class="fa fa-facebook pull-right fa-master"></a>
+                            <a href="#" class="fa fa-twitter pull-right fa-master"></a>
+                            <a href="#" class="fa fa-google pull-right fa-master"></a>
+                            <a href="#" class="fa fa-linkedin pull-right fa-master"></a>
+                            <a href="#" class="fa fa-youtube pull-right fa-master"></a>
+                            <a href="#" class="fa fa-instagram pull-right fa-master"></a>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <a href="PayPalAccountConfigure.aspx" class="btn btn-danger form-control text-center">
+                                Paypal Config
+                            </a>
+                        </div>
+                        <div class="col-sm-4">
+                            <a href="BankAccountConfigure.aspx" class="btn btn-danger form-control text-center">
+                                Bank Account Config
+                            </a>
+                        </div>
+                        <div class="col-sm-4">
+                            <a href="CardConfigure.aspx" class="btn btn-danger form-control text-center">
+                                Credit Card Config
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    <!--================================== Footer End =====================================-->
+    <script src="../lib/Master.js"></script>
+</body>
+</html>

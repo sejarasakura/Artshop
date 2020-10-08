@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ArtGalleryV2StoreContainer" CdmEntityContainer="ArtGalleryV2Entities">
+    <EntitySetMapping Name="Arts">
+      <EntityTypeMapping TypeName="ArtGalleryV2.Art">
+        <MappingFragment StoreEntitySet="Art">
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="date_done" ColumnName="date_done" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="artist_id" ColumnName="artist_id" />
+          <ScalarProperty Name="art_id" ColumnName="art_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BankTranfers">
+      <EntityTypeMapping TypeName="ArtGalleryV2.BankTranfer">
+        <MappingFragment StoreEntitySet="BankTranfer">
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="bank_username" ColumnName="bank_username" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="bank_account" ColumnName="bank_account" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BitArts">
+      <EntityTypeMapping TypeName="ArtGalleryV2.BitArt">
+        <MappingFragment StoreEntitySet="BitArt">
+          <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="art_id" ColumnName="art_id" />
+          <ScalarProperty Name="bit_art_id" ColumnName="bit_art_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cards">
+      <EntityTypeMapping TypeName="ArtGalleryV2.Card">
+        <MappingFragment StoreEntitySet="Card">
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="exp_date" ColumnName="exp_date" />
+          <ScalarProperty Name="ccv" ColumnName="ccv" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="card_number" ColumnName="card_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carts">
+      <EntityTypeMapping TypeName="ArtGalleryV2.Cart">
+        <MappingFragment StoreEntitySet="Cart">
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="art_id" ColumnName="art_id" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="relation" ColumnName="relation" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="cart_id" ColumnName="cart_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="ArtGalleryV2.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="order_date" ColumnName="order_date" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payments">
+      <EntityTypeMapping TypeName="ArtGalleryV2.Payment">
+        <MappingFragment StoreEntitySet="Payment">
+          <ScalarProperty Name="payment_date" ColumnName="payment_date" />
+          <ScalarProperty Name="total_price" ColumnName="total_price" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="payment_method_id" ColumnName="payment_method_id" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentMethods">
+      <EntityTypeMapping TypeName="ArtGalleryV2.PaymentMethod">
+        <MappingFragment StoreEntitySet="PaymentMethod">
+          <ScalarProperty Name="payment_role" ColumnName="payment_role" />
+          <ScalarProperty Name="payment_role_id" ColumnName="payment_role_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="payment_method_id" ColumnName="payment_method_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PayPals">
+      <EntityTypeMapping TypeName="ArtGalleryV2.PayPal">
+        <MappingFragment StoreEntitySet="PayPal">
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="paypal_id" ColumnName="paypal_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PM_BankTranfer">
+      <EntityTypeMapping TypeName="ArtGalleryV2.PM_BankTranfer">
+        <MappingFragment StoreEntitySet="PM_BankTranfer">
+          <ScalarProperty Name="bank_account" ColumnName="bank_account" />
+          <ScalarProperty Name="payment_role_id" ColumnName="payment_role_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PM_Card">
+      <EntityTypeMapping TypeName="ArtGalleryV2.PM_Card">
+        <MappingFragment StoreEntitySet="PM_Card">
+          <ScalarProperty Name="card_number" ColumnName="card_number" />
+          <ScalarProperty Name="payment_role_id" ColumnName="payment_role_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductRelations">
+      <EntityTypeMapping TypeName="ArtGalleryV2.ProductRelation">
+        <MappingFragment StoreEntitySet="ProductRelation">
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="art_id" ColumnName="art_id" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="relation" ColumnName="relation" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="relation_id" ColumnName="relation_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="ArtGalleryV2.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="picture" ColumnName="picture" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="phone_num" ColumnName="phone_num" />
+          <ScalarProperty Name="user_role" ColumnName="user_role" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="user_email" ColumnName="user_email" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetails">
+      <EntityTypeMapping TypeName="ArtGalleryV2.OrderDetail">
+        <MappingFragment StoreEntitySet="OrderDetails">
+          <ScalarProperty Name="product_quantity" ColumnName="product_quantity" />
+          <ScalarProperty Name="art_id" ColumnName="art_id" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PM_PayPal">
+      <EntityTypeMapping TypeName="ArtGalleryV2.PM_PayPal">
+        <MappingFragment StoreEntitySet="PM_PayPal">
+          <ScalarProperty Name="paypal_id" ColumnName="paypal_id" />
+          <ScalarProperty Name="payment_role_id" ColumnName="payment_role_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChangePasswords">
+      <EntityTypeMapping TypeName="ArtGalleryV2.ChangePassword">
+        <MappingFragment StoreEntitySet="ChangePassword">
+          <ScalarProperty Name="temp_password" ColumnName="temp_password" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

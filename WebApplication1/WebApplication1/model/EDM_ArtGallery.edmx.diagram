@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ab936d59b2a8495fa842b2942edcfd51" Name="Diagram1">
+        <EntityTypeShape EntityType="ArtGalleryV2.Art" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ArtGalleryV2.BankTranfer" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ArtGalleryV2.BitArt" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ArtGalleryV2.Card" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ArtGalleryV2.Cart" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ArtGalleryV2.Order" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ArtGalleryV2.Payment" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ArtGalleryV2.PaymentMethod" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ArtGalleryV2.PayPal" Width="1.5" PointX="6.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ArtGalleryV2.PM_BankTranfer" Width="1.5" PointX="4.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ArtGalleryV2.PM_Card" Width="1.5" PointX="6.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ArtGalleryV2.ProductRelation" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ArtGalleryV2.User" Width="1.5" PointX="8.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ArtGalleryV2.OrderDetail" Width="1.5" PointX="8.75" PointY="7.75" />
+        <EntityTypeShape EntityType="ArtGalleryV2.PM_PayPal" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="ArtGalleryV2.ChangePassword" Width="1.5" PointX="3.375" PointY="9.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

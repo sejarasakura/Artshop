@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ArtGalleryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Art">
+    <Key>
+      <PropertyRef Name="art_id" />
+    </Key>
+    <Property Name="art_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="artist_id" Type="nvarchar" MaxLength="100" />
+    <Property Name="image" Type="image" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="Price" Type="smallmoney" />
+    <Property Name="date_done" Type="date" />
+  </EntityType>
+  <EntityType Name="BitArt">
+    <Key>
+      <PropertyRef Name="bit_art_id" />
+    </Key>
+    <Property Name="bit_art_id" Type="int" Nullable="false" />
+    <Property Name="art_id" Type="int" Nullable="false" />
+    <Property Name="customer_id" Type="int" Nullable="false" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="price" Type="nchar" MaxLength="500" />
+    <Property Name="date_done_bit" Type="date" />
+  </EntityType>
+  <EntityType Name="Table">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="x" Type="nchar" MaxLength="10" />
+    <Property Name="xx" Type="bit" />
+    <Property Name="xxx" Type="image" />
+    <Property Name="wxxx" Type="float" />
+  </EntityType>
+  <EntityType Name="WishList">
+    <Key>
+      <PropertyRef Name="Index" />
+    </Key>
+    <Property Name="Index" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ArtID" Type="int" Nullable="false" />
+    <Property Name="ArtistName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Art" Type="image" />
+    <Property Name="Amount" Type="int" />
+    <Property Name="Price" Type="smallmoney" />
+  </EntityType>
+  <EntityContainer Name="ArtGalleryModelStoreContainer">
+    <EntitySet Name="Art" EntityType="Self.Art" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BitArt" EntityType="Self.BitArt" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WishList" EntityType="Self.WishList" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ArtGalleryModelStoreContainer" CdmEntityContainer="ArtGalleryEntities">
+    <EntitySetMapping Name="Arts">
+      <EntityTypeMapping TypeName="ArtGalleryModel.Art">
+        <MappingFragment StoreEntitySet="Art">
+          <ScalarProperty Name="date_done" ColumnName="date_done" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="artist_id" ColumnName="artist_id" />
+          <ScalarProperty Name="art_id" ColumnName="art_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BitArts">
+      <EntityTypeMapping TypeName="ArtGalleryModel.BitArt">
+        <MappingFragment StoreEntitySet="BitArt">
+          <ScalarProperty Name="date_done_bit" ColumnName="date_done_bit" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="art_id" ColumnName="art_id" />
+          <ScalarProperty Name="bit_art_id" ColumnName="bit_art_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tables">
+      <EntityTypeMapping TypeName="ArtGalleryModel.Table">
+        <MappingFragment StoreEntitySet="Table">
+          <ScalarProperty Name="wxxx" ColumnName="wxxx" />
+          <ScalarProperty Name="xxx" ColumnName="xxx" />
+          <ScalarProperty Name="xx" ColumnName="xx" />
+          <ScalarProperty Name="x" ColumnName="x" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
