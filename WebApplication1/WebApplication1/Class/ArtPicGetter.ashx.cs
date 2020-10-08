@@ -25,22 +25,16 @@ namespace WebApplication1.Class
             SqlCommand objCmd = new SqlCommand(sTSQL, objConn);
             objCmd.CommandType = CommandType.Text;
             objCmd.Parameters.AddWithValue("@id", id.ToString());
-            try
-            {
+            try{
                 object data = objCmd.ExecuteScalar();
                 if (data != null)
-                {
                     context.Response.BinaryWrite((byte[])data);
-                }
                 else
-                {
                     context.Response.BinaryWrite(FileToByteArray());
-                }
                 objConn.Close();
                 objCmd.Dispose();
             }
-            catch
-            {
+            catch{
                 context.Response.BinaryWrite(FileToByteArray());
             }
         }

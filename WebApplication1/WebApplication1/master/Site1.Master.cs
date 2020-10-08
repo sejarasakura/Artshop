@@ -8,13 +8,71 @@ using WebApplication1;
 using WebApplication1.model;
 using WebApplication1.Class;
 using WebApplication1.pages;
+using System.Web.Security;
 
 namespace WebApplication1.master
 {
     public partial class Site1 : System.Web.UI.MasterPage
     {
-        public WebApplication1.model.User user;
         public static string LOGIN_ID_PHASE = "USER_LOGIN_ID";
+        private const string AntiXsrfTokenKey = "__AntiXsrfToken";
+        private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
+        private string _antiXsrfTokenValue;
+
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            DynamicSiteMapProvider myCustomSiteMap = new DynamicSiteMapProvider();
+            myCustomSiteMap.RebuildSiteMap();
+            myCustomSiteMap.GenerateWebDotSiteMapXMLFile();
+
+            // The code below helps to protect against XSRF attacks
+            var requestCookie = Request.Cookies[AntiXsrfTokenKey];
+            Guid requestCookieGuidValue;
+            if (requestCookie != null && Guid.TryParse(requestCookie.Value, out requestCookieGuidValue))
+            {
+                // Use the Anti-XSRF token from the cookie
+                _antiXsrfTokenValue = requestCookie.Value;
+                Page.ViewStateUserKey = _antiXsrfTokenValue;
+            }
+            else
+            {
+                // Generate a new Anti-XSRF token and save to the cookie
+                _antiXsrfTokenValue = Guid.NewGuid().ToString("N");
+                Page.ViewStateUserKey = _antiXsrfTokenValue;
+
+                var responseCookie = new HttpCookie(AntiXsrfTokenKey)
+                {
+                    HttpOnly = true,
+                    Value = _antiXsrfTokenValue
+                };
+                if (FormsAuthentication.RequireSSL && Request.IsSecureConnection)
+                {
+                    responseCookie.Secure = true;
+                }
+                Response.Cookies.Set(responseCookie);
+            }
+
+            Page.PreLoad += master_Page_PreLoad;
+        }
+
+        protected void master_Page_PreLoad(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                // Set Anti-XSRF token
+                ViewState[AntiXsrfTokenKey] = Page.ViewStateUserKey;
+                ViewState[AntiXsrfUserNameKey] = Context.User.Identity.Name ?? String.Empty;
+            }
+            else
+            {
+                // Validate the Anti-XSRF token
+                if ((string)ViewState[AntiXsrfTokenKey] != _antiXsrfTokenValue
+                    || (string)ViewState[AntiXsrfUserNameKey] != (Context.User.Identity.Name ?? String.Empty))
+                {
+                    throw new InvalidOperationException("Validation of Anti-XSRF token failed.");
+                }
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -38,26 +96,6 @@ namespace WebApplication1.master
             }
             return result;
         }
-        protected void logout(object sender, EventArgs e)
-        {
-            CookiesManage.RemoveCookie(Site1.LOGIN_ID_PHASE, "user_id");
-            Page.Response.Redirect(Page.Request.Url.ToString(), true);
-            pages.WebForm2.clear();
-        }
 
-        protected string getMyAccount()
-        {
-            if (user == null)
-                user = GetLogin(Response);
-
-            if (user == null)
-            {
-                return "https://" + HttpContext.Current.Request.Url.Authority + "/pages/Login.aspx";
-            }
-            else
-            {
-                return "https://" + HttpContext.Current.Request.Url.Authority + "/pages/MyAccount.aspx";
-            }
-        }
     }
 }

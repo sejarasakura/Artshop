@@ -81,6 +81,16 @@
     <Property Name="art_id" Type="int" Nullable="false" />
     <Property Name="product_quantity" Type="int" />
   </EntityType>
+  <EntityType Name="Pages">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="50" />
+    <Property Name="description" Type="nvarchar" MaxLength="100" />
+    <Property Name="file_name" Type="nvarchar" MaxLength="100" />
+    <Property Name="parent_id" Type="int" />
+  </EntityType>
   <EntityType Name="Payment">
     <Key>
       <PropertyRef Name="payment_id" />
@@ -167,6 +177,7 @@
     <EntitySet Name="ChangePassword" EntityType="Self.ChangePassword" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pages" EntityType="Self.Pages" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PaymentMethod" EntityType="Self.PaymentMethod" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PayPal" EntityType="Self.PayPal" Schema="dbo" store:Type="Tables" />

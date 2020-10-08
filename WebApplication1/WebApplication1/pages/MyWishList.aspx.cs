@@ -48,8 +48,7 @@ namespace WebApplication1.pages
             {
                 int crow;
                 crow = Convert.ToInt32(e.CommandArgument.ToString());
-                string rollno = GridView1.Rows[crow].Cells[0].Text;
-                deleterowdata(rollno);
+                deleterowdata(crow + "");
             }
             else if(e.CommandName == "Move Cart")
             {

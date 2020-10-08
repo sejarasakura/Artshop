@@ -362,13 +362,13 @@ namespace WebApplication1.pages
                 card.amount = card.amount - total_price_record;
                 db.Cards.AddOrUpdate(card);
 
-                PM_Card pM_Card = new PM_Card();
-                if (db.PM_Card.Count() > 0)
-                    pM_Card.payment_role_id = db.PM_Card.Max(i => i.payment_role_id) + 1;
-                pM_Card.card_number = card.card_number;
-                db.PM_Card.AddOrUpdate(pM_Card);
+                //PM_Card pM_Card = new PM_Card();
+                //if (db.PM_Card.Count() > 0)
+                //    pM_Card.payment_role_id = db.PM_Card.Max(i => i.payment_role_id) + 1;
+                //pM_Card.card_number = card.card_number;
+                //db.PM_Card.AddOrUpdate(pM_Card);
 
-                PaymentMethod paymentMethod = get_payment_method(db, pM_Card.payment_role_id, PaymentRole.Card);
+                PaymentMethod paymentMethod = get_payment_method(db, 0, PaymentRole.Card);
                 db.PaymentMethods.AddOrUpdate(paymentMethod);
 
                 db.SaveChanges();

@@ -41,5 +41,6 @@ namespace WebApplication1.model
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<PM_PayPal> PM_PayPal { get; set; }
         public virtual DbSet<ChangePassword> ChangePasswords { get; set; }
+        public virtual DbSet<Page> Pages { get; set; }
     }
 }

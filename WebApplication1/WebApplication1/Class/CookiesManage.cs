@@ -10,25 +10,6 @@ namespace WebApplication1.Class
     {
         public static void RemoveCookie(string cookieName, string keyName)
         {
-            //if (String.IsNullOrEmpty(keyName))
-            //{
-            //    if (HttpContext.Current.Request.Cookies[cookieName] != null)
-            //    {
-            //        HttpCookie cookie = HttpContext.Current.Request.Cookies[cookieName];
-            //        cookie.Expires = DateTime.UtcNow.AddYears(-1);
-            //        HttpContext.Current.Response.Cookies.Add(cookie);
-            //        HttpContext.Current.Request.Cookies.Remove(cookieName);
-            //    }
-            //}
-            //else
-            //{
-            //    HttpCookie cookie = HttpContext.Current.Request.Cookies[cookieName];
-            //    cookie.Expires = DateTime.UtcNow.AddYears(-1);
-            //    cookie.Values.Remove(keyName);
-            //    HttpContext.Current.Response.Cookies.Add(cookie);
-            //    HttpContext.Current.Request.Cookies.Remove(cookieName);
-            //}
-
             // set dictionary
             Dictionary<string, string> data = new Dictionary<string, string>();
             data.Add("user_id", "");

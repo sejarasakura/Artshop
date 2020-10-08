@@ -67,7 +67,8 @@
                             <asp:LinkButton
                                 runat="server"
                                 CssClass="btn btn-danger"
-                                CommandName="Delete Row"
+                                CommandName="Delete Row" 
+                                CommandArgument='<%# Eval("art_id") %>'
                                 Text='Remove &#128148;' />
                         </ItemTemplate>
                     </asp:TemplateField>

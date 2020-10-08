@@ -117,14 +117,14 @@ namespace WebApplication1.pages
                 using (ArtGalleryV2Entities db = new ArtGalleryV2Entities())
                 {
                     Art c = db.Arts.Find(int.Parse(rollno));
-                    db.Arts.Remove(c);
-                    db.SaveChanges();
-                    GridView1.DataBind();
                     preview.InnerHtml =
                       "<div class=\"alert alert-success alert-dismissible\">" +
                         "<a href = \"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>" +
-                        "<strong>Deleted Sucessful!</strong> you have remove item  : [ " + db.Arts.Find(c.art_id).name + "] !!" +
+                        "<strong>Deleted Sucessful!</strong> you have remove item  : [ " + c.name + "] !!" +
                       "</div>";
+                    db.Arts.Remove(c);
+                    db.SaveChanges();
+                    GridView1.DataBind();
                 }
             }
             catch

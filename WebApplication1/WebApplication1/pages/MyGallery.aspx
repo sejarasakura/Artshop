@@ -65,50 +65,49 @@
         <div id="preview" runat="server"></div>
         <br>
         <div class="container-x" id="flavoursContainer">
-            
-        <asp:Repeater ID="Repeater1" runat="server">
-            <ItemTemplate>
-            <!-- START -->
-            <div class="panel panel-default data-container">
-                <div class="panel-heading"><%# Eval("name") %></div>
-                <div class="panel-body control-body">
-                    <img class="img-control" src="../Class/ArtPicGetter.ashx?id=<%# Eval("art_id") %>" alt="<%# Eval("name") %>">
-                    <div class="row" style="padding-top: 10px;">
-                        <div class="col-sm-8">
-                            <div class="discripion overflow-hidden">
-                                <p class="discripion-size"><%# Eval("description")%></p>
+
+            <asp:Repeater ID="Repeater1" runat="server">
+                <ItemTemplate>
+                    <!-- START -->
+                    <div class="panel panel-default data-container">
+                        <div class="panel-heading"><%# Eval("name") %></div>
+                        <div class="panel-body control-body">
+                            <img class="img-control" src="../Class/ArtPicGetter.ashx?id=<%# Eval("art_id") %>" alt="<%# Eval("name") %>">
+                            <div class="row" style="padding-top: 10px;">
+                                <div class="col-sm-8">
+                                    <div class="discripion overflow-hidden">
+                                        <p class="discripion-size"><%# Eval("description")%></p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <asp:LinkButton
+                                        CssClass="btn btn-success btn-blocks form-control"
+                                        ID="lnkDownload"
+                                        runat="server"
+                                        Text="Download"
+                                        OnClick="DownloadFile"
+                                        CommandArgument='<%# Eval("art_id")%>' />
+                                    <a
+                                        href="ImageViewer.aspx?id=<%# Eval("art_id") %>&name=<%# Eval("name") %>"
+                                        target="_blank"
+                                        class="btn btn-default btn-block form-control"
+                                        style="margin-top: 10px">View Image
+                                    </a>
+                                </div>
+                                <br />
+                            </div>
+                            <div class="row" style="padding-top: 0">
+                                <div class="col-sm-12 text-center">
+                                    <a href="SingleProduct.aspx?id=<%# Eval("art_id")%>">View Details
+                                    </a>
+                                </div>
+                                <br />
                             </div>
                         </div>
-                        <div class="col-sm-4">
-                            <asp:LinkButton 
-                                CssClass="btn btn-success btn-blocks form-control"
-                                ID="lnkDownload" 
-                                runat="server" 
-                                Text="Download" 
-                                OnClick="DownloadFile"
-                                CommandArgument='<%# Eval("art_id")%>' />
-                            <a 
-                                href="ImageViewer.aspx?id=<%# Eval("art_id") %>&name=<%# Eval("name") %>"
-                                target="_blank"
-                                class="btn btn-default btn-block form-control" 
-                                style="margin-top: 10px"
-                                >View Image
-                            </a>
-                        </div>
-                        <br />
                     </div>
-                    <div class="row" style="padding-top: 0">
-                        <div class="col-sm-12 text-center">
-                            <a href="SingleProduct.aspx?id=<%# Eval("art_id")%>">View Details
-                            </a>
-                        </div>
-                        <br />
-                    </div>
-                </div>
-            </div>
-            <!-- END -->
-        </ItemTemplate>
-    </asp:Repeater>
+                    <!-- END -->
+                </ItemTemplate>
+            </asp:Repeater>
 
         </div>
     </div>

@@ -17,6 +17,7 @@
     <EntitySet Name="OrderDetails" EntityType="ArtGalleryV2.OrderDetail" />
     <EntitySet Name="PM_PayPal" EntityType="ArtGalleryV2.PM_PayPal" />
     <EntitySet Name="ChangePasswords" EntityType="ArtGalleryV2.ChangePassword" />
+    <EntitySet Name="Pages" EntityType="ArtGalleryV2.Page" />
   </EntityContainer>
   <EnumType Name="PaymentRole" UnderlyingType="Int16">
     <Member Name="Card" Value="67" />
@@ -202,4 +203,14 @@
     <Member Name="Cancled" Value="67" />
     <Member Name="Refund" Value="82" />
   </EnumType>
+  <EntityType Name="Page">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="file_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="parent_id" Type="Int32" />
+  </EntityType>
 </Schema>

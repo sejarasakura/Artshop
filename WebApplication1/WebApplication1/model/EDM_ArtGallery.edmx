@@ -86,6 +86,16 @@
           <Property Name="art_id" Type="int" Nullable="false" />
           <Property Name="product_quantity" Type="int" />
         </EntityType>
+        <EntityType Name="Pages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" />
+          <Property Name="description" Type="nvarchar" MaxLength="100" />
+          <Property Name="file_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="parent_id" Type="int" />
+        </EntityType>
         <EntityType Name="Payment">
           <Key>
             <PropertyRef Name="payment_id" />
@@ -172,6 +182,7 @@
           <EntitySet Name="ChangePassword" EntityType="Self.ChangePassword" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pages" EntityType="Self.Pages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PaymentMethod" EntityType="Self.PaymentMethod" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PayPal" EntityType="Self.PayPal" Schema="dbo" store:Type="Tables" />
@@ -202,6 +213,7 @@
           <EntitySet Name="OrderDetails" EntityType="ArtGalleryV2.OrderDetail" />
           <EntitySet Name="PM_PayPal" EntityType="ArtGalleryV2.PM_PayPal" />
           <EntitySet Name="ChangePasswords" EntityType="ArtGalleryV2.ChangePassword" />
+          <EntitySet Name="Pages" EntityType="ArtGalleryV2.Page" />
         </EntityContainer>
         <EnumType Name="PaymentRole" UnderlyingType="Int16">
           <Member Name="Card" Value="67" />
@@ -387,6 +399,16 @@
           <Member Name="Cancled" Value="67" />
           <Member Name="Refund" Value="82" />
         </EnumType>
+        <EntityType Name="Page">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="file_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="parent_id" Type="Int32" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -562,6 +584,17 @@
               <MappingFragment StoreEntitySet="ChangePassword">
                 <ScalarProperty Name="temp_password" ColumnName="temp_password" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pages">
+            <EntityTypeMapping TypeName="ArtGalleryV2.Page">
+              <MappingFragment StoreEntitySet="Pages">
+                <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+                <ScalarProperty Name="file_name" ColumnName="file_name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

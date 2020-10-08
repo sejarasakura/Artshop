@@ -79,6 +79,10 @@
     <Content Include="App_Data\ArtGallery_log.ldf">
       <DependentUpon>ArtGallery.mdf</DependentUpon>
     </Content>
+    <Content Include="user_control\Footer.ascx" />
+    <Content Include="user_control\Navigation.ascx" />
+    <Content Include="user_control\Shop.ascx" />
+    <Content Include="user_control\Sitemap.ascx" />
     <Content Include="lib\Master.css" />
     <Content Include="lib\Master.js" />
     <Content Include="model\EDM_ArtGallery.Context.tt">
@@ -108,8 +112,6 @@
     <Content Include="pages\SingleProduct.aspx" />
     <Content Include="pages\ImageViewer.aspx" />
     <Content Include="pages\MyOrder.aspx" />
-    <Content Include="_old_page\buy.aspx" />
-    <Content Include="_old_page\Home.aspx" />
     <Content Include="lib\bootstrap\css\bootstrap-theme.css" />
     <Content Include="lib\bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="lib\bootstrap\css\bootstrap.css" />
@@ -121,24 +123,49 @@
     <Content Include="lib\datatable\datatables.min.css" />
     <Content Include="lib\datatable\datatables.min.js" />
     <Content Include="lib\jquery\jquery-3.5.1.min.js" />
-    <Content Include="_old_page\PurchaseHistory.aspx" />
-    <Content Include="_old_page\viewbuydetail.aspx" />
     <Content Include="pages\Shop.aspx" />
     <Content Include="Web.config" />
-    <Content Include="_old_page\WishList.aspx" />
-    <Content Include="_old_page\WishList2.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\CookiesManage.cs" />
     <Compile Include="Class\ArtPicGetter.ashx.cs">
       <DependentUpon>ArtPicGetter.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Class\DynamicSitePrvider.cs" />
     <Compile Include="Class\ImgConvert.cs" />
     <Compile Include="Class\PaymentModule.cs" />
     <Compile Include="Class\ProfilePicture.ashx.cs">
       <DependentUpon>ProfilePicture.ashx</DependentUpon>
     </Compile>
     <Compile Include="Class\SendMail.cs" />
+    <Compile Include="user_control\Footer.ascx.cs">
+      <DependentUpon>Footer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user_control\Footer.ascx.designer.cs">
+      <DependentUpon>Footer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="user_control\Navigation.ascx.cs">
+      <DependentUpon>Navigation.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user_control\Navigation.ascx.designer.cs">
+      <DependentUpon>Navigation.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="user_control\Shop.ascx.cs">
+      <DependentUpon>Shop.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user_control\Shop.ascx.designer.cs">
+      <DependentUpon>Shop.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="user_control\Sitemap.ascx.cs">
+      <DependentUpon>Sitemap.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user_control\Sitemap.ascx.designer.cs">
+      <DependentUpon>Sitemap.ascx</DependentUpon>
+    </Compile>
     <Compile Include="model\Art.cs">
       <DependentUpon>EDM_ArtGallery.tt</DependentUpon>
     </Compile>
@@ -186,6 +213,9 @@
       <DependentUpon>EDM_ArtGallery.tt</DependentUpon>
     </Compile>
     <Compile Include="model\OrderDetail.cs">
+      <DependentUpon>EDM_ArtGallery.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\Page.cs">
       <DependentUpon>EDM_ArtGallery.tt</DependentUpon>
     </Compile>
     <Compile Include="model\Payment.cs">
@@ -344,20 +374,6 @@
     <Compile Include="pages\MyOrder.aspx.designer.cs">
       <DependentUpon>MyOrder.aspx</DependentUpon>
     </Compile>
-    <Compile Include="_old_page\buy.aspx.cs">
-      <DependentUpon>buy.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="_old_page\buy.aspx.designer.cs">
-      <DependentUpon>buy.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="_old_page\Home.aspx.cs">
-      <DependentUpon>Home.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="_old_page\Home.aspx.designer.cs">
-      <DependentUpon>Home.aspx</DependentUpon>
-    </Compile>
     <Compile Include="pages\Shop.aspx.cs">
       <DependentUpon>Shop.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -366,34 +382,6 @@
       <DependentUpon>Shop.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="_old_page\PurchaseHistory.aspx.cs">
-      <DependentUpon>PurchaseHistory.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="_old_page\PurchaseHistory.aspx.designer.cs">
-      <DependentUpon>PurchaseHistory.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="_old_page\viewbuydetail.aspx.cs">
-      <DependentUpon>viewbuydetail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="_old_page\viewbuydetail.aspx.designer.cs">
-      <DependentUpon>viewbuydetail.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="_old_page\WishList.aspx.cs">
-      <DependentUpon>WishList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="_old_page\WishList.aspx.designer.cs">
-      <DependentUpon>WishList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="_old_page\WishList2.aspx.cs">
-      <DependentUpon>WishList2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="_old_page\WishList2.aspx.designer.cs">
-      <DependentUpon>WishList2.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="lib\bootstrap\css\bootstrap-theme.css.map" />
@@ -415,20 +403,18 @@
     <Content Include="Class\ArtPicGetter.ashx" />
     <Content Include="Class\ProfilePicture.ashx" />
     <None Include="packages.config" />
+    <Content Include="pages\sitemap\product.sitemap" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <Content Include="master\Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="pages\sitemap\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
