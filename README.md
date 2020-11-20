@@ -1,4 +1,4 @@
 # Artshop
- An art shop program for show client and demo. written by C#
+ An art shop program for show client and demo. written by C# and asp.net
 
 # Good Practical C# code
