@@ -9,7 +9,7 @@ ASP<br>
 RE: Validatator, Fileupload, Gridview, Template Field, Data source, Repeter and Eval, Bind data
 
 C#<br>
-RE: FindControl, Foreach, Dictionary, AddRange, download image, SQL Handler
+RE: FindControl, Foreach, Dictionary, AddRange, download image, SQL Handle
 
 HTML/CSS/JS<br>
 RE: Preview upload file, Boostrap(grid, table, well, alter, button, img, panel, navbar, modal)
