@@ -1,5 +1,5 @@
 # Welcome to Artshop project
-This project is about an art shop program is written by C# and asp.net framework. This system is develop by my at all. This system include function of selling artwork for artist and buying artwork for customer. The requrement is using all the asp and .net framework. It it include 4 functional module inside. Customer, Artist, Booking, and Payment
+This project is about an art shop program is written by C# and asp.net framework. This is an individual project doing at my free time. This system include function of selling artwork for artist and buying artwork for customer. The requrement is using all the asp and .net framework. It it include 4 functional module inside. Customer, Artist, Booking, and Payment
 
 ### Skill used
 .NET<br>
